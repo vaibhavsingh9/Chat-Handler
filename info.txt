@@ -1,0 +1,39 @@
+Whatsapp Chat List | LRU CACHE
+Implemented a chat application chat list using Least Recently Used Cache.
+It provides insertion, deletion, and searching in constant time.
+When a message from a new chat arrives, it will be inserted at the top of the chat list. If the message is from an existing
+conversation, then it will update the chat position to the top.
+
+Implemented a data structure for LRU cache functionality for supporting insert(key, value), search(key), getMostRecentKey() operations 
+in O(1) time. The class also should have the maxSize property. It represents the maximum number of key-value pairs that can be stored in the 
+cache at one time. If a key value pair is inserted in the cache when the cache is already full, than the least recently key value pair
+should be deleted and new one should be inserted. If the key value pair already exists in the cache, than the value of corresponding key 
+will get updated.  
+
+Caching Replacement Policy determines which element will be replaced when the cache size gets full.
+
+1. Beladys anomaly - replace that value which won't be used for the longest time in the future. This is the most optimal algorithm but we cannot
+predict the future, it only works if we know what our next 100 or 200 requests is going to be.
+
+2. FIFO - replace that element which was inserted earliest among all the other elements.
+
+3. LIFO - replace that element which was put in the cache most recently.
+
+4. LRU -  replace least recently used element. The reason why LRU outperforms other caching policies is due to a program behaviour called
+Locality Of Reference. It is a phenomenon in which a program for a given time period tends to access same set of memory locations or instructions whose addresses are near one another. This is because at any given time we keep on working with a subset of applications repeatedly which are  correlated to each other. So, the data block that has been referenced most recently has a higher probablity of being referenced again in the near future compared to the data object which was least recently used. So, we should store that data block in the cache memory to avoid searching in the main memory again and again. Once the data is writtten into the cache memory after first miss, the subsequent requests can be served very quickly. This is the reason why we use LRU caching policy whenever the access time to fetch the original data is quite highcompared to the time needed to read from the cache. 
+
+
+
+LRU uses doubly linked list and hashmap. We cant use vector or arrays or stack because shifting will take O(n) time.  
+hashmap stores key value pairs of id mapped with the address of corresponding node in the linked list. Hashmap reduces the time of searching the ID in the linked list from O(n) to O(1). 
+
+The structure of the chat list is a linked list. For each chat we have name, message, image and time. THe chat list supports 2 kind of operations. 
+
+1. When we get a new message from a person, that message comes to the top of the chatlist and all the other messages moves one position downwards. 
+
+2. When we get request to delete a message, we remove the corresponding node from the linkedlist and update the chatlist. 
+
+
+
+
+
